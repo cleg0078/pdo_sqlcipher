@@ -2,16 +2,14 @@
 SHELL := /usr/bin/bash
 
 # TRY TO SUPPORT UBUNTU && CENTOS: probably not the best code but at least easy to understand. CENTOS SHOULD BE REMOVED 
-PHP = $(shell if [ -x "$$(command -v php8.3)" ]; then  echo 'php8.3'; elif [ -x "$$(command -v php8.2)" ]; then  echo 'php8.2'; else echo 'php8.3'; fi)
+PHP_CONFIG=$(shell which php-config)
+$(info PHP_CONFIG: ${PHP_CONFIG})
 
-$(info PHP version: ${PHP})
+PHP_VER=$(shell ${PHP_CONFIG} --version)
 
-.PHONY:	install
+$(info PHP version: ${PHP_VER})
 
-install:
-	@echo "launch:"
-	@echo "make build -> Build pdo_sqlcipher for your current php version"
-
+.PHONY:	build
 
 build:
 	@echo "Build in progress..."

@@ -92,13 +92,12 @@ if [ ! -f "${SQLCIPHER_SRC}/sqlite3.c" ]; then
 	# subject to change (see http://www.sqlite.org/compile.html)
 	./configure \
 		--disable-shared \
-		--enable-tempstore=yes \
+		--with-tempstore=yes \
 		--enable-static \
-		--enable-editline \
 		--enable-readline \
-		--with-gnu-ld=yes \
-		CFLAGS="${CFLAGS}" \
-		LDFLAGS="${LDFLAGS}"
+		--enable-editline \
+		#CFLAGS="${CFLAGS}" \
+		#LDFLAGS="${LDFLAGS}"
 
 		if [ $? -ne 0 ]; then
 		exit $?
@@ -213,7 +212,8 @@ if [ $? -ne 0 ]; then
 	exit $?
 fi
 
-./configure CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+#./configure CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+./configure 
 
 if [ $? -ne 0 ]; then
 	exit $?
@@ -261,12 +261,12 @@ if [ $? -ne 0 ]; then
 fi
 
 # sqlcipher static binary
-cp "${SQLCIPHER_SRC}/sqlcipher" "${RELEASE_DIR}/sqlcipher"
+cp "${SQLCIPHER_SRC}/sqlite3" "${RELEASE_DIR}/sqlite3"
 if [ $? -ne 0 ]; then
 	exit $?
 fi
 
-strip "${RELEASE_DIR}/sqlcipher"
+strip "${RELEASE_DIR}/sqlite3"
 if [ $? -ne 0 ]; then
 	exit $?
 fi
