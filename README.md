@@ -7,7 +7,7 @@
 Just launch the script
 
 ```
-./build.sh
+make
 ```
 
 The compiled files are in release
